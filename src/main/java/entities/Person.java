@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 
 
 @Entity
-@NamedQuery(name = "RenameMe.deleteAllRows", query = "DELETE from RenameMe")
+//@NamedQuery(name = "RenameMe.deleteAllRows", query = "DELETE from RenameMe")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,12 +29,12 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String phone, Date created, Date lastEdited) {
+    public Person(String firstName, String lastName, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
-        this.created = created;
-        this.lastEdited = lastEdited;
+        this.created = new java.util.Date();
+        this.lastEdited = new java.util.Date();
     }
 
     public Integer getId() {

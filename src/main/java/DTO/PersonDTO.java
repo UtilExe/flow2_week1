@@ -7,23 +7,28 @@ import javax.persistence.Temporal;
 
 
 public class PersonDTO {
+    /* DTO
+    For the REST-endpoints that returns a Person, the JSON object should be built like this (observe the absence of the two date-fields):
+ 
+    {"fName":"Kurt","lName":"Wonnegut", phone:"12345678","id":0}
+    */ 
     
- //   private Integer id;
+    private Integer id;
     private String firstName;
     private String lastName;
     private String phone;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date created;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date lastEdited;
     
     public PersonDTO(Person person) {
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
         this.phone = person.getPhone();
-        this.created = person.getCreated();
-        this.lastEdited = person.getLastEdited();
-        //created = new java.util.Date();
+        this.id = person.getId();
+    }
+    
+    public PersonDTO(String firstName,String lastName, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
     }
 
     public String getFirstName() {
@@ -38,14 +43,11 @@ public class PersonDTO {
         return phone;
     }
 
-    public Date getCreated() {
-        return created;
+    public Integer getId() {
+        return id;
     }
 
-    public Date getLastEdited() {
-        return lastEdited;
+    public void setId(Integer id) {
+        this.id = id;
     }
-    
-    
-    
 }
