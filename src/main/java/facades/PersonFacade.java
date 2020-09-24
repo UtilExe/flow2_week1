@@ -78,24 +78,10 @@ public class PersonFacade implements IPersonFacade {
     }
 
     @Override
-    /*
-    public PersonsDTO(List<Person> personEntitites) {
-        personEntitites.forEach((p) -> {
-            all.add(new PersonDTO(p));
-        });
-    }*/
-    // Was in doubt as to how this method below should return PersonsDTO without a list. Probably to do with its constructor, but still not sure how.
-    public List<PersonDTO> getAllPersons() {
+    public PersonsDTO getAllPersons() {
         EntityManager em = emf.createEntityManager();
-        List<Person> personList = new ArrayList();
-        List<PersonDTO> listPersons = new ArrayList();
         try {
-            TypedQuery<Person> query = em.createQuery("SELECT j FROM Person j", Person.class);
-            personList = query.getResultList();
-            for (Person p : personList) {
-                listPersons.add(new PersonDTO(p));
-            }
-            return listPersons;
+            return new PersonsDTO(em.createQuery("SELECT j FROM Person j").getResultList());
         } finally {
             em.close();
         }

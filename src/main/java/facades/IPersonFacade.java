@@ -8,7 +8,7 @@ public interface IPersonFacade {
   public PersonDTO addPerson(String fName, String lName, String phone);  
   public PersonDTO deletePerson(int id);  
   public PersonDTO getPerson(int id);  
-  public List<PersonDTO> getAllPersons();  
+  public PersonsDTO getAllPersons();  
   public PersonDTO editPerson(PersonDTO p);  
 }
 
