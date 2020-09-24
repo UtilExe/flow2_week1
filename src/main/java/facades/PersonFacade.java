@@ -2,6 +2,7 @@ package facades;
 
 import DTO.PersonDTO;
 import DTO.PersonsDTO;
+import Exceptions.PersonNotFoundException;
 import entities.Person;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,10 +53,13 @@ public class PersonFacade implements IPersonFacade {
     }
 
     @Override
-    public PersonDTO deletePerson(int id) {
+    public PersonDTO deletePerson(int id) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
         Person person = em.find(Person.class, id);
         try {
+            if (person == null) {
+                throw new PersonNotFoundException("Could not delete, provided id does not exist");
+            }
             em.getTransaction().begin();
             em.remove(person);
             em.getTransaction().commit();
@@ -66,11 +70,15 @@ public class PersonFacade implements IPersonFacade {
         return new PersonDTO(person);
     }
 
+    // Would it have been better to use Catch, instead of throwing it at method level?
     @Override
-    public PersonDTO getPerson(int id) {
+    public PersonDTO getPerson(int id) throws PersonNotFoundException {
         EntityManager em = emf.createEntityManager();
         try {
             Person person = em.find(Person.class, id);
+            if (person == null) {
+                throw new PersonNotFoundException("No person with provided id found");
+            }
             return new PersonDTO(person);
         } finally {
             em.close();
