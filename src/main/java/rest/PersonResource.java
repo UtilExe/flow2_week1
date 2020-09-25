@@ -50,12 +50,12 @@ public class PersonResource {
         return GSON.toJson(FACADE.getAllPersons());
     }
     
-    @POST
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String addPerson(String person) {
         PersonDTO pDTO = GSON.fromJson(person, PersonDTO.class);
-        PersonDTO pAdded = FACADE.addPerson(pDTO.getFirstName(), pDTO.getLastName(), pDTO.getPhone());
+        PersonDTO pAdded = FACADE.addPerson(pDTO.getFirstName(), pDTO.getLastName(), pDTO.getPhone(), pDTO.getStreet(), pDTO.getZip(), pDTO.getCity());
         return GSON.toJson(pAdded);
     }
     

@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
  * @author emilg
  */
 public class main {
-    
+    /*
     public static void main(String[] args) {
           EntityManagerFactory emf;
           emf = EMF_Creator.createEntityManagerFactory();
@@ -30,5 +30,5 @@ public class main {
         } finally {
             em.close();
         }
-    }
+    }*/
 }
