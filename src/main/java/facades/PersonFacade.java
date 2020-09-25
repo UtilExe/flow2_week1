@@ -43,7 +43,9 @@ public class PersonFacade implements IPersonFacade {
         Person person = new Person(fName, lName, phone);
         EntityManager em = emf.createEntityManager();
         try {
+            
             em.getTransaction().begin();
+            
             em.persist(person);
             em.getTransaction().commit();
             return new PersonDTO(person);
@@ -102,9 +104,8 @@ public class PersonFacade implements IPersonFacade {
         person.setFirstName(p.getFirstName());
         person.setLastName(p.getLastName());
         person.setPhone(p.getPhone());
-        // Issue: Last edit doesn't change. Tried this code but no luck: 
-        // person.setLastEdited(new java.util.Date());
-        // Besides from that, edit method works well.
+        // Issue: Last edit uses the initial object/date initialization and not the last time it was actually edited.
+        person.setLastEdited();
         
         try {
             em.getTransaction().begin();
