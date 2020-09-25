@@ -35,6 +35,15 @@ public class PersonResource {
     public String demo() {
         return "{\"msg\":\"Hello World\"}";
     }
+    
+    @Path("count")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getJokeCount() {
+        long count = FACADE.getPersonCount();
+        
+        return "{\"count\":"+count+"}";
+    }
 
     @Path("{id}")
     @GET

@@ -69,6 +69,16 @@ public class PersonFacade implements IPersonFacade {
         }
         return new PersonDTO(person);
     }
+    
+    public long getPersonCount(){
+        EntityManager em = getEntityManager();
+        try {
+            long personCount = (long) em.createQuery("SELECT COUNT(r) FROM Person r").getSingleResult();
+            return personCount;
+        } finally{  
+            em.close();
+        } 
+    }
 
     // Would it have been better to use Catch, instead of throwing it at method level?
     @Override

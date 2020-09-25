@@ -17,6 +17,10 @@ public class PersonsDTO {
             all.add(new PersonDTO(p));
         });
     }
+
+    public Object contains(PersonDTO result) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
