@@ -2,6 +2,7 @@ package facades;
 
 import DTO.PersonDTO;
 import DTO.PersonsDTO;
+import Exceptions.MissingInputException;
 import Exceptions.PersonNotFoundException;
 import utils.EMF_Creator;
 import entities.Person;
@@ -87,7 +88,7 @@ public class PersonFacadeTest {
     }
     
     @Test
-    public void addPersonTest() {
+    public void addPersonTest() throws MissingInputException {
         Person newP = new Person("Kurt", "Swane", "000");
         PersonDTO expected = new PersonDTO(newP);
         PersonDTO result = facade.addPerson(newP.getFirstName(), newP.getLastName(), newP.getPhone());

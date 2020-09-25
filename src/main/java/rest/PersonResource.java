@@ -1,6 +1,7 @@
 package rest;
 
 import DTO.PersonDTO;
+import Exceptions.MissingInputException;
 import Exceptions.PersonNotFoundException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -62,7 +63,7 @@ public class PersonResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String addPerson(String person) {
+    public String addPerson(String person) throws MissingInputException {
         PersonDTO pDTO = GSON.fromJson(person, PersonDTO.class);
         PersonDTO pAdded = FACADE.addPerson(pDTO.getFirstName(), pDTO.getLastName(), pDTO.getPhone());
         return GSON.toJson(pAdded);
